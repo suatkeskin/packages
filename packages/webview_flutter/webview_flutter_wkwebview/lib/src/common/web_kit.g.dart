@@ -1089,6 +1089,10 @@ class WKWebViewConfigurationHostApi {
         message: 'Unable to establish connection on channel.',
       );
     } else if (replyList.length > 1) {
+      final code = replyList[0]! as String;
+      if ('FWFUnsupportedVersionError' == code) {
+        return;
+      }
       throw PlatformException(
         code: replyList[0]! as String,
         message: replyList[1] as String?,
